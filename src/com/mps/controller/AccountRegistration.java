@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +15,12 @@ import com.mps.message.AccountDao;
 import com.mps.message.Response;
 import com.mps.util.MPSUtil;
 
-
-public class RegistrationServlet extends HttpServlet {
+@WebServlet(value = "/accountRegistration")
+public class AccountRegistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	
-	public RegistrationServlet() {
+	public AccountRegistration() {
 		super();
 	}
 
@@ -37,7 +38,7 @@ public class RegistrationServlet extends HttpServlet {
 
 		Account account = MPSUtil.mapper.readValue(json, Account.class);
 
-		Response loginResponse = new AccountDao().authorizeUser(account);
+		Response loginResponse = new AccountDao().accountRegistration(account);
 
 		MPSUtil.mapper.writeValue(response.getOutputStream(), loginResponse);
 

@@ -9,7 +9,7 @@ import com.mps.util.DBCUtil;
 
 public class AccountDao {
 
-	public Response authorizeUser(Account account) {
+	public Response accountRegistration(Account account) {
 		Response response = new Response();
 		String query = "insert into user values ('" + account.getEmail() + "','" + account.getfName() + "','"
 				+ account.getlName() + "','" + account.getAddress() + "','" + account.getMobile() + "','"
