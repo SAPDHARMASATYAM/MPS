@@ -69,15 +69,15 @@
                         </a>
                     </li>
                     
-                    <li onclick="loadMenu('#account')">
-                        <a href="#blog">
+                    <li onclick="loadMenu('accountTab')">
+                        <a href="#accountTab">
                             <span class="rect"></span>
                             <span class="circle"></span>
                             Logout
                         </a>
                     </li>
-                    <li onclick="loadMenu('#account')">
-                        <a href="#account">
+                    <li onclick="loadMenu('accountTab')">
+                        <a href="#accountTab">
                             <span class="rect"></span>
                             <span class="circle"></span>
                             Login
@@ -94,18 +94,44 @@
 
         <div class="page-content">
         
-            <section id="blog">
+            <section id="accountTab" style="display: none;">
                 <div class="section-heading">
-                    <h1>Account<br><em>Registration</em></h1>
+                    <h1>Account<br><em></em></h1>
                     
                 </div>
                 <div class="section-content">
                     <div class="tabs-content">
                         <div class="wrapper">
                             <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+                              <li><a href="#tab2" class="active">Login Here</a></li>
                               <li><a href="#tab1" class="active">Register Here</a></li>
                             </ul>
                             <section id="first-tab-group" class="tabgroup">
+                              <div id="tab2">
+                                 <div class="section-content">
+			                        <form id="contact" action="javascript:accountLogin();" method="post">
+			                            <div class="row">
+			                                <div class="col-md-12">
+			                                  <fieldset>
+			                                    <input  type="email" class="form-control" id="loginEmailId" name="loginEmailId" placeholder="Email Id..." required="">
+			                                  </fieldset>
+			                                </div>
+			                               
+			                                 <div class="col-md-12">
+			                                  <fieldset>
+			                                    <input  type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="Password..." required="">
+			                                  </fieldset>
+			                                </div>
+			                                <div class="col-md-12">
+			                                  <fieldset style="text-align: center;">
+			                                    <button type="submit" id="accountLogin" name="accountLogin" class="btn">Login</button>
+			                                  </fieldset>
+			                                </div>
+			                            </div>
+			                        </form>
+			                    </div>
+			                    </div>
+                              <div id="tab1">
                                  <div class="section-content">
 			                        <form id="contact" action="javascript:accountRegistration();" method="post">
 			                            <div class="row">
@@ -140,12 +166,13 @@
 			                                  </fieldset>
 			                                </div>
 			                                <div class="col-md-12">
-			                                  <fieldset>
+			                                  <fieldset style="text-align: center;">
 			                                    <button type="submit" id="accountRegistration" name="accountRegistration" class="btn">Register</button>
 			                                  </fieldset>
 			                                </div>
 			                            </div>
 			                        </form>
+			                    </div>
 			                    </div>
                             </section> 
                         </div>
@@ -154,31 +181,46 @@
             </section>
         
         
-            <section id="contact" style="display: none;">
+            <section id="contact" >
                 <div id="contact-content" >
                     <div class="section-heading">
                         <h1>New<br><em>Message</em></h1>
                     </div>
                     <div class="section-content">
-                        <form id="contact" action="#" method="post">
+                        <form id="contact" action="javascript:sendMessage()" method="post">
                             <div class="row">
                                 <div class="col-md-4">
                                   <fieldset>
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="email Id..." required="">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="email Id..." required="">
                                   </fieldset>
                                 </div>
                                  <div class="col-md-4">
                                   <fieldset>
-                                    <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required="">
+                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject..." required="">
+                                  </fieldset>
+                                </div>
+                                 <div class="col-md-4">
+                                  <fieldset>
+                                  	  <select id="messageType" name="messageType" onchange="messageTypeChange()">
+								      	<option value="true">Public</option>
+								      	<option value="false">Private</option>
+								      </select>
                                   </fieldset>
                                 </div>
                                 <div class="col-md-12">
                                   <fieldset>
-                                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                     <select id="to" name="to" multiple="multiple" style="display: none;">
+								      	<option>Select</option>
+								      </select>
                                   </fieldset>
                                 </div>
                                 <div class="col-md-12">
                                   <fieldset>
+                                    <textarea rows="6" class="form-control" id="message" name="message" placeholder="Your message..." required=""></textarea>
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                  <fieldset style="text-align: center;">
                                     <button type="submit" id="form-submit" class="btn">Send Message Now</button>
                                   </fieldset>
                                 </div>
@@ -203,13 +245,19 @@
                                     <ul>
                                         <li>
                                             <div class="item">
-<!--                                                 <img src="img/blog_1.jpg" alt=""> -->
                                                 <div class="text-content">
-                                                    <h4>Message Title</h4>
-                                                    <span>Message Date</span>
-                                                    <p>Content of message.</p>
-                                                    
-                                                   
+                                                   <table border="1" class="scroll">
+													<thead>
+														<tr>
+															<th width="20%">Title</th>
+															<th width="50%">Message</th>
+															<th width="20%">Date Time</th>
+															<th width="10%">Privacy</th>
+														</tr>
+													</thead>
+													<tbody id="messagesBody" >
+													</tbody>
+												</table>
                                                 </div>
                                             </div>
                                         </li>
@@ -276,14 +324,6 @@
     </script>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		function loadMenu(menuName) {
-			console.log(menuName + " Is Loading ........");
-			$("#contact").hide();
-			$("#blog").hide();
-			$("#account").hide();
-			$("#"+menuName).show();
-		}
-	</script>
+
 </body>
 </html>

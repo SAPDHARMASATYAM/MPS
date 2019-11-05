@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import com.mps.message.Response;
 import com.mps.util.MPSUtil;
 
 
+@WebServlet(value = "/allMessages")
 public class AllMessages extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,9 +36,9 @@ public class AllMessages extends HttpServlet {
 		}
 		System.out.println("AllMessages  request JSON : " + json);
 
-		Message mail = MPSUtil.mapper.readValue(json, Message.class);
+		Message message = MPSUtil.mapper.readValue(json, Message.class);
 
-		Response changeMailResponse = new MessageDao().getAllMessagesByType(mail);
+		Response changeMailResponse = new MessageDao().getAllMessagesByType(message);
 		MPSUtil.mapper.writeValue(response.getOutputStream(), changeMailResponse);
 
 		System.err.println(changeMailResponse);

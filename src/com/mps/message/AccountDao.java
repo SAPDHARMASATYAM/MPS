@@ -83,7 +83,7 @@ public class AccountDao {
 	public Response findAllUsers(Account user) {
 		Response response = new Response();
 		List<String> users = null;
-		String query = "select id from user where  email !='" + user.getEmail() + "'";
+		String query = "select email from user where  email !='" + user.getEmail() + "'";
 		users = parseUserIds(DBCUtil.getData(query));
 		if (users.size() == 0) {
 			response.setResponseStatus("Fail");

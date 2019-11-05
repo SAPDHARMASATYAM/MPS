@@ -63,11 +63,11 @@ public class MessageDao {
 		ResultSet resultSet = null;
 		List<Message> messages = null;
 		try {
-			String query = "select * from message  where sender = ?";
+			String query = "select * from message  where frm = ?";
 			connection = DBCUtil.getconnection();
 			if (message.isType()) {// public
-				query += " union select * from message  where sender != ? and type =?";
-				query += " union select * from message where sender in (select m_id from ms where u_id = ?)";
+				query += " union select * from message  where frm != ? and typ =?";
+				query += " union select * from message where frm in (select mid from ms where uid = ?)";
 				pstmt = connection.prepareStatement(query);
 				pstmt.setString(2, message.getFrom());
 				pstmt.setBoolean(3, message.isType());
@@ -91,15 +91,15 @@ public class MessageDao {
 					messageMsg.setType(resultSet.getBoolean(6));
 					messages.add(messageMsg);
 				}
-				response.setResponseStatus("Success");
 				response.setResponseMessage("messages Reading Successfull");
+				response.setResponseStatus("Success");
 			} else {
-				response.setResponseStatus("Fail");
 				response.setResponseMessage("messages Reading Fail");
+				response.setResponseStatus("Fail");
 			}
 		} catch (SQLException e) {
-			response.setResponseStatus("Exception");
 			response.setResponseMessage("messages Reading Fail");
+			response.setResponseStatus("Exception");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -123,11 +123,11 @@ public class MessageDao {
 		ResultSet resultSet = null;
 		List<Message> messages = null;
 		try {
-			String query = "select * from message  where sender = ?";
+			String query = "select * from message  where frm = ?";
 			connection = DBCUtil.getconnection();
 			if (message.getSubject().trim().length() > 0 && message.getBody().trim().length() > 0) {
-				query += " and subject like ? and content like ?";
-				query += " union select * from message  where sender != ? and type =? and subject like ? and content like ?";
+				query += " and sub like ? and body like ?";
+				query += " union select * from message  where frm != ? and typ =? and sub like ? and body like ?";
 				pstmt = connection.prepareStatement(query);
 				pstmt.setString(1, message.getFrom());
 				pstmt.setString(2, "%" + message.getSubject() + "%");
@@ -137,8 +137,8 @@ public class MessageDao {
 				pstmt.setString(6, "%" + message.getSubject() + "%");
 				pstmt.setString(7, "%" + message.getBody() + "%");
 			} else if (message.getSubject().trim().length() > 0 && message.getBody().trim().length() == 0) {
-				query += " and messageSubject like ? ";
-				query += " union select * from message  where sender != ? and type =? and subject like ? ";
+				query += " and sub like ? ";
+				query += " union select * from message  where frm != ? and typ =? and sub like ? ";
 				pstmt = connection.prepareStatement(query);
 				pstmt.setString(1, message.getFrom());
 				pstmt.setString(2, "%" + message.getSubject() + "%");
@@ -146,8 +146,8 @@ public class MessageDao {
 				pstmt.setBoolean(4, true);
 				pstmt.setString(5, "%" + message.getSubject() + "%");
 			} else if (message.getSubject().trim().length() == 0 && message.getBody().trim().length() > 0) {
-				query += " and  messageContent like ?";
-				query += " union select * from message  where sender != ? and type =? and  content like ?";
+				query += " and  body like ?";
+				query += " union select * from message  where frm != ? and typ =? and  body like ?";
 				pstmt = connection.prepareStatement(query);
 				pstmt.setString(1, message.getFrom());
 				pstmt.setString(2, "%" + message.getBody() + "%");
@@ -205,7 +205,7 @@ public class MessageDao {
 		Connection connection = null;
 		ResultSet rs = null;
 		try {
-			String query = "insert into message (sender,content,date,subject,type) values (?,?,?,?,?)";
+			String query = "insert into message (frm,body,date,sub,typ)  values (?,?,?,?,?)";
 			connection = DBCUtil.getconnection();
 			pstmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			pstmt.setString(1, message.getFrom());

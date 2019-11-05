@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,6 +15,7 @@ import com.mps.message.MessageDao;
 import com.mps.message.Response;
 import com.mps.util.MPSUtil;
 
+@WebServlet(value = "/sendMessage")
 public class NewMessage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,7 +26,7 @@ public class NewMessage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		System.out.println("....................... Sending message started .......................");
+		System.out.println("***************** new message intiated *******************************");
 
 		response.setContentType("application/json");
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(request.getInputStream()));
@@ -32,7 +34,7 @@ public class NewMessage extends HttpServlet {
 		if (bufferedReader != null) {
 			json = bufferedReader.readLine();
 		}
-		System.out.println("New Message sending request JSON : " + json);
+		System.out.println("New Message request JSON : " + json);
 
 		Message message = MPSUtil.mapper.readValue(json, Message.class);
 
