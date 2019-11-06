@@ -132,6 +132,7 @@ function updateToList(){
 		alert(ex);
 	}
 }
+
 function messageTypeChange() {
 
 	var isPublic = $("#messageType").val();
@@ -219,6 +220,7 @@ function allMessages(){
 						}else{
 							eachrow += "<td> Private </td>"
 						}
+						 eachrow +="<td><a href='javascript:deleteMessage("+obj.id+")'> Delete</a></td>";
 						eachrow += "</tr>";
 					$('#messagesBody').append(eachrow);
 				});
@@ -232,4 +234,85 @@ function allMessages(){
 	} catch (ex) {
 		alert(ex);
 	}
+}
+
+function deleteMessage(id){
+	try {
+
+		var message = new Object();
+		message.id = id;
+		console.log("deleteMessage Id is  : " + id);
+		$.ajax({
+			url : "./deleteMessage",
+			type : 'POST',
+			dataType : 'json',
+			data : JSON.stringify(message),
+			contentType : 'application/json',
+			mimeType : 'application/json',
+
+			success : function(data) {
+				var respJSONString = JSON.stringify(data);
+				console.log(respJSONString);
+				var jsonObj = JSON.parse(respJSONString);
+				console.log(jsonObj.responseStatus + " : " + jsonObj.responseMessage);
+				if(jsonObj.responseStatus == "Success"){
+					alert("Message deleted successfully.");
+				}else{
+					alert("Message Not deleted.");
+				}
+			},
+			error : function(data, status, er) {
+				alert("error: " + JSON.stringify(data) + " status: " + status + " er:" + er);
+			}
+		});
+		allMessages();
+	} catch (ex) {
+		alert(ex);
+	}
+}
+
+function findMessages() {
+	try {
+		var message = new Object();
+		message.from = sessionStorage.getItem("userId");
+		message.from = "sapthagiri.koduri@adtran.com";
+		message.body = $("#searchBody").val();
+		message.subject = $("#searchSubject").val();
+		console.log("findMessages object : " + message);
+		$.ajax({
+			url : "./findMessages",
+			type : 'POST',
+			dataType : 'json',
+			data : JSON.stringify(message),
+			contentType : 'application/json',
+			mimeType : 'application/json',
+
+			success : function(data) {
+				console.log("find result : " + JSON.parse(JSON.stringify(data.responseBody)));
+				$('#messagesBody').empty();
+				$.each(data.responseBody, function(idx, obj) {
+					var eachrow = "<tr>"
+						+ "<td>" + obj.subject + "</td>"
+						+ "<td>" + obj.body + "</td>"
+						+ "<td>" + obj.date + "</td>";
+					
+						if(obj.type === true){
+							eachrow += "<td> Public </td>"
+						}else{
+							eachrow += "<td> Private </td>"
+						}
+						 eachrow +="<td><a href='javascript:deleteMessage("+obj.id+")'> Delete</a></td>";
+						eachrow += "</tr>";
+					$('#messagesBody').append(eachrow);
+				});
+			},
+
+			error : function(data, status, er) {
+				alert("error: " + JSON.stringify(data) + " status: " + status + " er:" + er);
+			}
+		});
+	} catch (ex) {
+		alert(ex);
+	}
+	
 }

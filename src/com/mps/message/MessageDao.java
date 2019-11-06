@@ -126,8 +126,8 @@ public class MessageDao {
 			String query = "select * from message  where frm = ?";
 			connection = DBCUtil.getconnection();
 			if (message.getSubject().trim().length() > 0 && message.getBody().trim().length() > 0) {
-				query += " and sub like ? and body like ?";
-				query += " union select * from message  where frm != ? and typ =? and sub like ? and body like ?";
+				query += " and ( sub like ? or body like ? )";
+				query += " union select * from message  where frm != ? and typ =? and ( sub like ? or body like ? )";
 				pstmt = connection.prepareStatement(query);
 				pstmt.setString(1, message.getFrom());
 				pstmt.setString(2, "%" + message.getSubject() + "%");
@@ -200,10 +200,10 @@ public class MessageDao {
 	}
 
 	public Response newMessage(Message message) {
-		Response response = new Response();
 		PreparedStatement pstmt = null;
 		Connection connection = null;
 		ResultSet rs = null;
+		Response response = new Response();
 		try {
 			String query = "insert into message (frm,body,date,sub,typ)  values (?,?,?,?,?)";
 			connection = DBCUtil.getconnection();
@@ -225,17 +225,17 @@ public class MessageDao {
 				if (message.getTo() != null && message.getTo().length > 0) {
 					dao.shareMessage(messageId, message.getTo());
 				}
-				response.setResponseStatus("Success");
 				response.setResponseMessage("Message Post Successfull");
+				response.setResponseStatus("Success");
 			} else {
 				message.setId(0);
-				response.setResponseStatus("Fail");
 				response.setResponseMessage("Message Post Fail");
+				response.setResponseStatus("Fail");
 			}
 		} catch (SQLException e) {
 			message.setId(0);
-			response.setResponseStatus("Exception");
 			response.setResponseMessage("Message Post Fail");
+			response.setResponseStatus("Exception");
 			e.printStackTrace();
 		} finally {
 			try {
@@ -253,10 +253,10 @@ public class MessageDao {
 	}
 
 	public Response removeMessage(Message message) {
-		Response response = new Response();
 		PreparedStatement pstmt = null;
 		Connection connection = null;
 		ResultSet rs = null;
+		Response response = new Response();
 		try {
 			String query = "delete from message  where id = ?";
 			connection = DBCUtil.getconnection();
@@ -268,16 +268,16 @@ public class MessageDao {
 			int updateResponse = pstmt.executeUpdate();
 			if (updateResponse != 0) {
 				MSDao dao = new MSDao();
+				response.setResponseMessage("message Delete Successfull");
 				dao.deleteSharingMessages(message.getId());
 				response.setResponseStatus("Success");
-				response.setResponseMessage("message Delete Successfull");
 			} else {
-				response.setResponseStatus("Fail");
 				response.setResponseMessage("message Delete Fail");
+				response.setResponseStatus("Fail");
 			}
 		} catch (SQLException e) {
-			response.setResponseStatus("Exception");
 			response.setResponseMessage("message Delete Fail");
+			response.setResponseStatus("Exception");
 			e.printStackTrace();
 		} finally {
 			try {

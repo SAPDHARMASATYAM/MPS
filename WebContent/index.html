@@ -37,7 +37,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <!--/.navbar-header-->
             <div id="main-nav" class="collapse navbar-collapse">
                 <nav>
                     <ul class="nav navbar-nav">
@@ -50,7 +49,7 @@
 
         <div class="sidebar-navigation hidde-sm hidden-xs">
             <div class="logo">
-                <a href="#">MPS</a>
+                <a href="javascript:void(0)">MPS</a>
             </div>
             <nav>
                 <ul>
@@ -234,7 +233,33 @@
                     <h1>Inbox<br><em>Messages</em></h1>
                     
                 </div>
-                <div class="section-content">
+
+			<div class="section-content">
+				<form id="contact" action="javascript:findMessages();" method="post">
+					<div class="row">
+						<div class="col-md-5">
+							<fieldset>
+								<input type="text" class="form-control" id="searchSubject"
+									name="searchSubject" placeholder="Search Subject ...">
+							</fieldset>
+						</div>
+						<div class="col-md-5">
+							<fieldset>
+								<input type="text" class="form-control" id="searchBody"
+									name="searchBody" placeholder="Search Body ...">
+							</fieldset>
+						</div>
+
+						<div class="col-md-2">
+							<fieldset style="text-align: left;">
+								<button type="submit" id="searchButton" name="searchButton"
+									class="btn">Search</button>
+							</fieldset>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="section-content">
                     <div class="tabs-content">
                         <div class="wrapper">
                             <ul class="tabs clearfix" data-tabgroup="first-tab-group">
@@ -250,9 +275,10 @@
 													<thead>
 														<tr>
 															<th width="20%">Title</th>
-															<th width="50%">Message</th>
+															<th width="40%">Message</th>
 															<th width="20%">Date Time</th>
 															<th width="10%">Privacy</th>
+															<th width="10%">Action</th>
 														</tr>
 													</thead>
 													<tbody id="messagesBody" >

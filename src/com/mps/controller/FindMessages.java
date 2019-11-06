@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,24 +17,24 @@ import com.mps.util.MPSUtil;
 
 
 
-
-public class SearchMessageServlet extends HttpServlet {
+@WebServlet(value = "/findMessages")
+public class FindMessages extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public SearchMessageServlet() {
+    public FindMessages() {
         super();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		System.out.println("Search messaging started");
+		System.out.println("find messages service got called ........");
 		response.setContentType("application/json");
 		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String json = "";
 		if(bufferedReader != null){
 			json = bufferedReader.readLine();
 		}
-		System.out.println("Find Mails request JSON : " + json);
+		System.out.println("find messages service request JSON : " + json);
 
 		Message mail = MPSUtil.mapper.readValue(json, Message.class);
 
