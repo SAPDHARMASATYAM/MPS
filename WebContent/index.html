@@ -39,10 +39,10 @@
             </button>
             <div id="main-nav" class="collapse navbar-collapse">
                 <nav>
-                    <ul class="nav navbar-nav">
-                        <li onclick="loadMenu('contact')"><a href="#contact">New Message</a></li>
-                        <li onclick="loadMenu('blog')"><a href="#blog">Inbox</a></li>
-                    </ul>
+<!--                     <ul class="nav navbar-nav"> -->
+<!--                         <li onclick="loadMenu('contact')"><a href="#contact">New Message</a></li> -->
+<!--                         <li onclick="loadMenu('blog')"><a href="#blog">Inbox</a></li> -->
+<!--                     </ul> -->
                 </nav>
             </div>
         </header>
@@ -51,39 +51,39 @@
             <div class="logo">
                 <a href="javascript:void(0)">MPS</a>
             </div>
-            <nav>
-                <ul>
-                    <li onclick="loadMenu('contact')">
-                        <a href="#contact">
-                            <span class="rect"></span>
-                            <span class="circle"></span>
-                            New Message
-                        </a>
-                    </li>
-                    <li onclick="loadMenu('blog')">
-                        <a href="#blog">
-                            <span class="rect"></span>
-                            <span class="circle"></span>
-                            Inbox
-                        </a>
-                    </li>
+<!--             <nav> -->
+<!--                 <ul> -->
+<!--                     <li onclick="loadMenu('contact')"> -->
+<!--                         <a href="#contact"> -->
+<!--                             <span class="rect"></span> -->
+<!--                             <span class="circle"></span> -->
+<!--                             New Message -->
+<!--                         </a> -->
+<!--                     </li> -->
+<!--                     <li onclick="loadMenu('blog')"> -->
+<!--                         <a href="#blog"> -->
+<!--                             <span class="rect"></span> -->
+<!--                             <span class="circle"></span> -->
+<!--                             Inbox -->
+<!--                         </a> -->
+<!--                     </li> -->
                     
-                    <li onclick="loadMenu('accountTab')">
-                        <a href="#accountTab">
-                            <span class="rect"></span>
-                            <span class="circle"></span>
-                            Logout
-                        </a>
-                    </li>
-                    <li onclick="loadMenu('accountTab')">
-                        <a href="#accountTab">
-                            <span class="rect"></span>
-                            <span class="circle"></span>
-                            Login
-                        </a>
-                    </li>
-                </ul>
-            </nav>
+<!--                     <li onclick="loadMenu('accountTab')"> -->
+<!--                         <a href="#accountTab"> -->
+<!--                             <span class="rect"></span> -->
+<!--                             <span class="circle"></span> -->
+<!--                             Logout -->
+<!--                         </a> -->
+<!--                     </li> -->
+<!--                     <li onclick="loadMenu('accountTab')"> -->
+<!--                         <a href="#accountTab"> -->
+<!--                             <span class="rect"></span> -->
+<!--                             <span class="circle"></span> -->
+<!--                             Login -->
+<!--                         </a> -->
+<!--                     </li> -->
+<!--                 </ul> -->
+<!--             </nav> -->
             <ul class="social-icons">
                
             </ul>
@@ -93,7 +93,7 @@
 
         <div class="page-content">
         
-            <section id="accountTab" style="display: none;">
+            <section id="accountTab">
                 <div class="section-heading">
                     <h1>Account<br><em></em></h1>
                     
@@ -180,121 +180,121 @@
             </section>
         
         
-            <section id="contact" >
-                <div id="contact-content" >
-                    <div class="section-heading">
-                        <h1>New<br><em>Message</em></h1>
-                    </div>
-                    <div class="section-content">
-                        <form id="contact" action="javascript:sendMessage()" method="post">
-                            <div class="row">
-                                <div class="col-md-4">
-                                  <fieldset>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="email Id..." required="">
-                                  </fieldset>
-                                </div>
-                                 <div class="col-md-4">
-                                  <fieldset>
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject..." required="">
-                                  </fieldset>
-                                </div>
-                                 <div class="col-md-4">
-                                  <fieldset>
-                                  	  <select id="messageType" name="messageType" onchange="messageTypeChange()">
-								      	<option value="true">Public</option>
-								      	<option value="false">Private</option>
-								      </select>
-                                  </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                  <fieldset>
-                                     <select id="to" name="to" multiple="multiple" style="display: none;">
-								      	<option>Select</option>
-								      </select>
-                                  </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                  <fieldset>
-                                    <textarea rows="6" class="form-control" id="message" name="message" placeholder="Your message..." required=""></textarea>
-                                  </fieldset>
-                                </div>
-                                <div class="col-md-12">
-                                  <fieldset style="text-align: center;">
-                                    <button type="submit" id="form-submit" class="btn">Send Message Now</button>
-                                  </fieldset>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-            <section id="blog" style="display: none;">
-                <div class="section-heading">
-                    <h1>Inbox<br><em>Messages</em></h1>
+<!--             <section id="contact" > -->
+<!--                 <div id="contact-content" > -->
+<!--                     <div class="section-heading"> -->
+<!--                         <h1>New<br><em>Message</em></h1> -->
+<!--                     </div> -->
+<!--                     <div class="section-content"> -->
+<!--                         <form id="contact" action="javascript:sendMessage()" method="post"> -->
+<!--                             <div class="row"> -->
+<!--                                 <div class="col-md-4"> -->
+<!--                                   <fieldset> -->
+<!--                                     <input type="email" class="form-control" id="email" name="email" placeholder="email Id..." required=""> -->
+<!--                                   </fieldset> -->
+<!--                                 </div> -->
+<!--                                  <div class="col-md-4"> -->
+<!--                                   <fieldset> -->
+<!--                                     <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject..." required=""> -->
+<!--                                   </fieldset> -->
+<!--                                 </div> -->
+<!--                                  <div class="col-md-4"> -->
+<!--                                   <fieldset> -->
+<!--                                   	  <select id="messageType" name="messageType" onchange="messageTypeChange()"> -->
+<!-- 								      	<option value="true">Public</option> -->
+<!-- 								      	<option value="false">Private</option> -->
+<!-- 								      </select> -->
+<!--                                   </fieldset> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-md-12"> -->
+<!--                                   <fieldset> -->
+<!--                                      <select id="to" name="to" multiple="multiple" style="display: none;"> -->
+<!-- 								      	<option>Select</option> -->
+<!-- 								      </select> -->
+<!--                                   </fieldset> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-md-12"> -->
+<!--                                   <fieldset> -->
+<!--                                     <textarea rows="6" class="form-control" id="message" name="message" placeholder="Your message..." required=""></textarea> -->
+<!--                                   </fieldset> -->
+<!--                                 </div> -->
+<!--                                 <div class="col-md-12"> -->
+<!--                                   <fieldset style="text-align: center;"> -->
+<!--                                     <button type="submit" id="form-submit" class="btn">Send Message Now</button> -->
+<!--                                   </fieldset> -->
+<!--                                 </div> -->
+<!--                             </div> -->
+<!--                         </form> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </section> -->
+<!--             <section id="blog" style="display: none;"> -->
+<!--                 <div class="section-heading"> -->
+<!--                     <h1>Inbox<br><em>Messages</em></h1> -->
                     
-                </div>
+<!--                 </div> -->
 
-			<div class="section-content">
-				<form id="contact" action="javascript:findMessages();" method="post">
-					<div class="row">
-						<div class="col-md-5">
-							<fieldset>
-								<input type="text" class="form-control" id="searchSubject"
-									name="searchSubject" placeholder="Search Subject ...">
-							</fieldset>
-						</div>
-						<div class="col-md-5">
-							<fieldset>
-								<input type="text" class="form-control" id="searchBody"
-									name="searchBody" placeholder="Search Body ...">
-							</fieldset>
-						</div>
+<!-- 			<div class="section-content"> -->
+<!-- 				<form id="contact" action="javascript:findMessages();" method="post"> -->
+<!-- 					<div class="row"> -->
+<!-- 						<div class="col-md-5"> -->
+<!-- 							<fieldset> -->
+<!-- 								<input type="text" class="form-control" id="searchSubject" -->
+<!-- 									name="searchSubject" placeholder="Search Subject ..."> -->
+<!-- 							</fieldset> -->
+<!-- 						</div> -->
+<!-- 						<div class="col-md-5"> -->
+<!-- 							<fieldset> -->
+<!-- 								<input type="text" class="form-control" id="searchBody" -->
+<!-- 									name="searchBody" placeholder="Search Body ..."> -->
+<!-- 							</fieldset> -->
+<!-- 						</div> -->
 
-						<div class="col-md-2">
-							<fieldset style="text-align: left;">
-								<button type="submit" id="searchButton" name="searchButton"
-									class="btn">Search</button>
-							</fieldset>
-						</div>
-					</div>
-				</form>
-			</div>
-			<div class="section-content">
-                    <div class="tabs-content">
-                        <div class="wrapper">
-                            <ul class="tabs clearfix" data-tabgroup="first-tab-group">
-                              <li><a href="#tab1" class="active">Messages</a></li>
-                            </ul>
-                            <section id="first-tab-group" class="tabgroup">
-                                <div id="tab1">
-                                    <ul>
-                                        <li>
-                                            <div class="item">
-                                                <div class="text-content">
-                                                   <table border="1" class="scroll">
-													<thead>
-														<tr>
-															<th width="20%">Title</th>
-															<th width="40%">Message</th>
-															<th width="20%">Date Time</th>
-															<th width="10%">Privacy</th>
-															<th width="10%">Action</th>
-														</tr>
-													</thead>
-													<tbody id="messagesBody" >
-													</tbody>
-												</table>
-                                                </div>
-                                            </div>
-                                        </li>
+<!-- 						<div class="col-md-2"> -->
+<!-- 							<fieldset style="text-align: left;"> -->
+<!-- 								<button type="submit" id="searchButton" name="searchButton" -->
+<!-- 									class="btn">Search</button> -->
+<!-- 							</fieldset> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<!-- 			<div class="section-content"> -->
+<!--                     <div class="tabs-content"> -->
+<!--                         <div class="wrapper"> -->
+<!--                             <ul class="tabs clearfix" data-tabgroup="first-tab-group"> -->
+<!--                               <li><a href="#tab1" class="active">Messages</a></li> -->
+<!--                             </ul> -->
+<!--                             <section id="first-tab-group" class="tabgroup"> -->
+<!--                                 <div id="tab1"> -->
+<!--                                     <ul> -->
+<!--                                         <li> -->
+<!--                                             <div class="item"> -->
+<!--                                                 <div class="text-content"> -->
+<!--                                                    <table border="1" class="scroll"> -->
+<!-- 													<thead> -->
+<!-- 														<tr> -->
+<!-- 															<th width="20%">Title</th> -->
+<!-- 															<th width="40%">Message</th> -->
+<!-- 															<th width="20%">Date Time</th> -->
+<!-- 															<th width="10%">Privacy</th> -->
+<!-- 															<th width="10%">Action</th> -->
+<!-- 														</tr> -->
+<!-- 													</thead> -->
+<!-- 													<tbody id="messagesBody" > -->
+<!-- 													</tbody> -->
+<!-- 												</table> -->
+<!--                                                 </div> -->
+<!--                                             </div> -->
+<!--                                         </li> -->
                                         
-                                    </ul>
-                                </div>
-                            </section> 
-                        </div>
-                    </div>
-                </div>
-            </section>
+<!--                                     </ul> -->
+<!--                                 </div> -->
+<!--                             </section>  -->
+<!--                         </div> -->
+<!--                     </div> -->
+<!--                 </div> -->
+<!--             </section> -->
             <section class="footer">
                
             </section>

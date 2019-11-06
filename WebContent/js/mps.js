@@ -2,7 +2,6 @@ function loadMenu(menuName) {
 	console.log(menuName + " Is Loading ........");
 	$("#contact").hide();
 	$("#blog").hide();
-	$("#accountTab").hide();
 	$("#" + menuName).show();
 	if(menuName == "blog"){
 		allMessages();
@@ -78,7 +77,7 @@ function accountLogin(){
 					alert("Account Login Success.");
 						var responseObject = JSON.parse(JSON.stringify(data.responseBody));
 						sessionStorage.setItem("userId", responseObject.email);
-				        loadMenu('contact');
+				        window.location= "./message.html";
 				} else {
 					alert("User User Login Failed. please verify details");
 				}
@@ -196,7 +195,6 @@ function allMessages(){
 		var message = new Object();
 		message.from = sessionStorage.getItem("userId");
 
-		message.from = "sapthagiri.koduri@adtran.com";
 		message.type = 'true';
 		$.ajax({
 			url : "./allMessages",
@@ -275,7 +273,6 @@ function findMessages() {
 	try {
 		var message = new Object();
 		message.from = sessionStorage.getItem("userId");
-		message.from = "sapthagiri.koduri@adtran.com";
 		message.body = $("#searchBody").val();
 		message.subject = $("#searchSubject").val();
 		console.log("findMessages object : " + message);
